@@ -110,6 +110,16 @@ void cb_hoja_read_buttons(button_data_s *data)
     data->button_y  = !gpio_get(PGPIO_PUSH_B);
     gpio_put(PGPIO_SCAN_A, true);
 
+    if (data->button_a) {
+        rgb_set_all(COLOR_GREEN.color);
+        rgb_set_brightness(100);
+        rgb_set_instant();
+    } else {
+        rgb_set_all(COLOR_RED.color);
+        rgb_set_brightness(50);
+        rgb_set_instant();
+    }
+
     gpio_put(PGPIO_SCAN_B, false);
     sleep_us(5);
     data->dpad_left     = !gpio_get(PGPIO_PUSH_D);
